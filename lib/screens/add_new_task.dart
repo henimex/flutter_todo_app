@@ -1,11 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_todo_app/Models/TaskType.dart';
 import 'package:flutter_todo_app/constants/color.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class AddNewTask extends StatelessWidget {
+class AddNewTask extends StatefulWidget {
   const AddNewTask({super.key});
 
+  @override
+  State<AddNewTask> createState() => _AddNewTaskState();
+}
+
+TextEditingController titleController = TextEditingController();
+TextEditingController dateController = TextEditingController();
+TextEditingController timeController = TextEditingController();
+TextEditingController notesController = TextEditingController();
+
+String myTaskType = "";
+
+class _AddNewTaskState extends State<AddNewTask> {
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -49,11 +63,13 @@ class AddNewTask extends StatelessWidget {
                 padding: EdgeInsets.only(top: 20.0),
                 child: Text("Task Title"),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: TextField(
-                  decoration:
-                      InputDecoration(filled: true, fillColor: Colors.white),
+                  controller: titleController,
+                  decoration: const InputDecoration(
+                      filled: true, fillColor: Colors.white),
                 ),
               ),
               const Row(
@@ -74,18 +90,19 @@ class AddNewTask extends StatelessWidget {
                   ),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 20.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
                 child: Row(
                   children: [
                     Expanded(
                       child: Column(
                         children: [
-                          Text("Date"),
+                          const Text("Date"),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: TextField(
-                              decoration: InputDecoration(
+                              controller: dateController,
+                              decoration: const InputDecoration(
                                   filled: true, fillColor: Colors.white),
                             ),
                           )
@@ -95,11 +112,12 @@ class AddNewTask extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Text("Time"),
+                          const Text("Time"),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: TextField(
-                              decoration: InputDecoration(
+                              controller: timeController,
+                              decoration: const InputDecoration(
                                   filled: true, fillColor: Colors.white),
                             ),
                           )
@@ -113,19 +131,20 @@ class AddNewTask extends StatelessWidget {
                 padding: EdgeInsets.only(top: 20.0),
                 child: Text("Notes"),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 300,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
+                    controller: notesController,
                     expands: true,
                     maxLines: null,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         filled: true, fillColor: Colors.white, isDense: true),
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: (){}, child: Text("Save "))
+              ElevatedButton(onPressed: () {}, child: const Text("Save "))
             ],
           ),
         ),
@@ -153,6 +172,9 @@ class _ShowMsgState extends State<ShowMsg> {
           content: Text(widget.title),
           duration: const Duration(milliseconds: 400),
         ));
+        setState(() {
+          myTaskType = widget.title;
+        });
       },
       child: Image.asset("lib/assets/images/${widget.image}.png"),
     );

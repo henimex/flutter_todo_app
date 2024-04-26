@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/CustomWidgets/Cards/completed_item.dart';
-import 'package:flutter_todo_app/CustomWidgets/Cards/todo_item.dart';
-import 'package:flutter_todo_app/constants/color.dart';
 import 'package:flutter_todo_app/screens/home.dart';
-import 'package:hexcolor/hexcolor.dart';
-
 import 'Models/TodoItem.dart';
 
 void main() {

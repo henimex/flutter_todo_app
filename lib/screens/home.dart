@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/screens/add_new_task.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../CustomWidgets/Cards/completed_item.dart';
 import '../CustomWidgets/Cards/todo_item.dart';
 import '../Models/TodoItem.dart';
@@ -128,7 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    print("Selam?");
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AddNewTask(),
+                    ));
                   },
                   child: const Text("Add New Task"))
             ],
